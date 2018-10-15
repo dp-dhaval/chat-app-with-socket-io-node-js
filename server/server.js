@@ -23,8 +23,12 @@ io.on('connection', (socket) => {
   
 
   socket.on('join',(params,callback) => {
+    params.room = params.room.toLowerCase();
+    if(users.isUnique(params.name,params.room)){
+      callback(`You are already in ${params.room}`);
+    }
     if (!isRealString(params.name) || !isRealString(params.room)){
-        callback('name and room name are required!!');
+      callback('name and room name are required!!');
     }
 
     socket.join(params.room);

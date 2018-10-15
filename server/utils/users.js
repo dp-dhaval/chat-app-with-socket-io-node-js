@@ -4,6 +4,9 @@ class Users{
         this.users = [];
     }
 
+    isUnique(name,room){
+        return this.users.filter((user)=> user.name === name && user.room === room )[0];
+    }
     addUser(id, name, room){
         var user = {id, name, room};
         this.users.push(user);
